@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue-class7</title>
+  <script src="../js/vue.min.js"></script>
+</head>
+
+<body>
+  <div id="app-7">
+    <ol>
+      <todo-item v-for="item in groceryList" v-bind:todo="item" v-bind:key="item.id">
+      </todo-item>
+    </ol>
+  </div>
+
+  <div id="callme">
+    <ul>
+      <callme v-for="items in usersList" v-bind:age="items" v-bind:key="items.id"></callme>
+    </ul>
+  </div>
+  <script>
+    `在VUE中，一个组件本质上是一个拥有预定义选项的Vue实例`
+    Vue.component('todo-item', {
+      props: ['todo'],
+      template: '<li>{{ todo.text }}</li>'
+    })
+
+    var app7 = new Vue({
+      el: '#app-7',
+      data: {
+        groceryList: [{
+            id: 0,
+            text: '蔬菜'
+          },
+          {
+            id: 1,
+            text: '奶酪'
+          },
+          {
+            id: 2,
+            text: '随便其它什么人吃的东西'
+          }
+        ]
+      }
+    })
+
+    Vue.component('callme', {
+      props: ['age'],
+      template: '<li id="{{ age.id }}">{{ age.name }}</li>'
+      `id无法获取到变量的值`
+    })
+
+    var app = new Vue({
+      el: '#callme',
+      data: {
+        usersList: [{
+            id: 0,
+            name: 'brooke',
+            age: '26',
+            gender: 'male'
+          },
+          {
+            id: 1,
+            name: 'check',
+            age: '22',
+            gender: 'female'
+          },
+          {
+            id: 2,
+            name: 'red',
+            age: '24',
+            gender: 'male'
+          },
+          {
+            id: 3,
+            name: 'cc',
+            age: '21',
+            gender: 'female'
+          },
+          {
+            id: 4,
+            name: 'brooke',
+            age: '20',
+            gender: 'male'
+          }
+        ]
+      }
+    })
+  </script>
+</body>
+
+</html>
